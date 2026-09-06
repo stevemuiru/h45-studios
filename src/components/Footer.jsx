@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Twitter, Youtube } from 'lucide-react';
+import { FaInstagram, FaFacebookF, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 
 function Footer() {
   return (
@@ -21,16 +21,16 @@ function Footer() {
 
         <div className="flex gap-5 items-start">
           <a href="#" aria-label="Instagram" className="text-bone/70 hover:text-brass transition-colors">
-            <Instagram size={20} />
+            <FaInstagram size={20} />
           </a>
           <a href="#" aria-label="Facebook" className="text-bone/70 hover:text-brass transition-colors">
-            <Facebook size={20} />
+            <FaFacebookF size={20} />
           </a>
           <a href="#" aria-label="X (Twitter)" className="text-bone/70 hover:text-brass transition-colors">
-            <Twitter size={20} />
+            <FaXTwitter size={20} />
           </a>
           <a href="#" aria-label="YouTube" className="text-bone/70 hover:text-brass transition-colors">
-            <Youtube size={20} />
+            <FaYoutube size={20} />
           </a>
         </div>
       </div>

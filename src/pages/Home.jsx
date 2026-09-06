@@ -1,13 +1,11 @@
-import hcBag from "../assets/hc-bag.jpeg";
-import hcJacket from "../assets/hc-jacket.jpeg";
-import hcJacket1 from "../assets/hc-jacket1.jpeg";
-import hcTotebag from "../assets/hc-totebag.jpeg";
+import { products } from "../data/products";
+import ProductCard from "../components/ProductCard";
 
 function Home() {
   return (
     <div className="bg-bone">
 
-      {/* Hero */}
+      
       <section className="bg-ink text-bone px-6 md:px-12 py-24 md:py-32">
         <div className="max-w-6xl mx-auto">
           <h1 className="font-serif text-4xl md:text-5xl max-w-2xl leading-tight">
@@ -15,7 +13,7 @@ function Home() {
           </h1>
           <p className="text-bone/70 text-sm md:text-base max-w-lg mt-6">
             H45 Studios — Branding &amp; Graphic Design / Arts &amp; Entertainment.
-            HC offers a distinctive approach to luxury fashion, centered on the art
+            H45 offers a distinctive approach to luxury fashion, centered on the art
             of upcycling. Our signature pieces include high-end bags, cutting-edge
             streetwear, and our charming range of crochet items.
           </p>
@@ -30,7 +28,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Pillars */}
+      
       <section className="px-6 md:px-12 py-20">
         <div className="max-w-6xl mx-auto">
           <p className="text-rust text-xs tracking-widest uppercase mb-2">Two Crafts, One House</p>
@@ -56,22 +54,21 @@ function Home() {
         </div>
       </section>
 
-      {/* Featured products */}
+      
       <section className="px-6 md:px-12 py-20">
         <div className="max-w-6xl mx-auto">
           <p className="text-rust text-xs tracking-widest uppercase mb-2">Just Landed</p>
           <h2 className="font-serif text-3xl text-ink mb-10">Featured products</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            <img src={hcBag} alt="H45 Studios upcycled bag" className="w-full aspect-[4/5] object-cover" />
-            <img src={hcJacket} alt="H45 Studios upcycled jacket" className="w-full aspect-[4/5] object-cover" />
-            <img src={hcJacket1} alt="H45 Studios upcycled jacket, alternate style" className="w-full aspect-[4/5] object-cover" />
-            <img src={hcTotebag} alt="H45 Studios upcycled tote bag" className="w-full aspect-[4/5] object-cover" />
+            {products.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Journal preview */}
+      
       <section className="px-6 md:px-12 py-20">
         <div className="max-w-6xl mx-auto">
           <p className="text-rust text-xs tracking-widest uppercase mb-2">From the Salon</p>

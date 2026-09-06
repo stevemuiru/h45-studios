@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Atelier from './pages/Atelier';
 import Salon from './pages/Salon';
 import Contact from './pages/Contact';
+import Footer from './components/Footer';
+import ProductDetail from './pages/ProductDetail';
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/atelier" element={<Atelier />} />
         <Route path="/salon" element={<Salon />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/atelier/:id" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </>
