@@ -16,6 +16,10 @@ function ProductDetail() {
     );
   }
 
+  const phoneNumber = "254793926339";
+  const message = `Hi! I'm interested in the ${product.name} ($${product.price}).`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
   return (
     <div className="px-6 md:px-12 py-16 bg-bone">
       <div className="max-w-6xl mx-auto">
@@ -61,9 +65,14 @@ function ProductDetail() {
               )}
             </div>
 
-            <button className="bg-brass text-ink text-xs tracking-wide px-6 py-3 mt-8 hover:bg-brass-light transition-colors">
-              Add to Cart
-            </button>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-brass text-ink text-xs tracking-wide px-6 py-3 mt-8 hover:bg-brass-light transition-colors"
+            >
+              Buy on WhatsApp
+            </a>
           </div>
         </div>
       </div>

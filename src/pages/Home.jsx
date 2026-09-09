@@ -21,9 +21,7 @@ function Home() {
             <button className="bg-brass text-ink text-xs tracking-wide px-6 py-3 hover:bg-brass-light transition-colors">
               Shop The Atelier
             </button>
-            <button className="border border-brass text-xs tracking-wide px-6 py-3 hover:bg-brass/10 transition-colors">
-              Explore The Salon
-            </button>
+          
           </div>
         </div>
       </section>
