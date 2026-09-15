@@ -1,8 +1,27 @@
-import { useState } from 'react';
-import { products } from '../data/products';
+import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 
 function Atelier() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/products`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch products');
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
   const [material, setMaterial] = useState('');
   const [type, setType] = useState('');
   const [sortBy, setSortBy] = useState('featured');
@@ -20,6 +39,9 @@ function Atelier() {
 
   if (sortBy === 'price-asc') filtered = [...filtered].sort((a, b) => a.price - b.price);
   if (sortBy === 'price-desc') filtered = [...filtered].sort((a, b) => b.price - a.price);
+
+  if (loading) return <p className="text-center py-20 text-ink/50">Loading collection...</p>;
+  if (error) return <p className="text-center py-20 text-rust">Couldn't load products: {error}</p>;
 
   return (
     <div className="bg-bone px-6 md:px-12 py-16">
