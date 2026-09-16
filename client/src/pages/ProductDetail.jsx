@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { products } from '../data/products';
 
 function ProductDetail() {
   const { id } = useParams();
-  const product = products.find((p) => p.id === Number(id));
+  const [product, setProduct] = useState(null);
   const [activeTab, setActiveTab] = useState('description');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!product) {
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/products/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Product not found');
+        return res.json();
+      })
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [id]);
+
+  if (loading) return <p className="text-center py-20 text-ink/50">Loading...</p>;
+  if (error || !product) {
     return (
       <div className="p-12 text-center">
         <p className="text-ink">Product not found.</p>
@@ -17,7 +35,7 @@ function ProductDetail() {
   }
 
   const phoneNumber = "254793926339";
-  const message = `Hi! I'm interested in the ${product.name} ($${product.price}).`;
+  const message = `Hi! I'm interested in the ${product.name} (KSh ${product.price}).`;
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
