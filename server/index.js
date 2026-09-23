@@ -1,7 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { products } from './data/products.js';
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
 dotenv.config();
 
@@ -15,16 +16,21 @@ app.get('/', (req, res) => {
     res.send('H45 studios API is running')
 })
 
-app.get('/api/products', (req, res) => {
-    res.json(products)
-})
+app.get('/api/products', async (req, res) => {
+  const products = await prisma.product.findMany();
+  res.json(products);
+});
 
-app.get('/api/products/:id', (req, res) => {
-    const product = products.find((p) => p.id === Number(req.params.id));
-    if (!product) {
-        return res.status(404).json({ error: 'Product not found' });
-    }
-    res.json(product);
+app.get('/api/products/:id', async (req, res) => {
+  const product = await prisma.product.findUnique({
+    where: { id: Number(req.params.id) },
+  });
+
+  if (!product) {
+    return res.status(404).json({ error: 'Product not found' });
+  }
+
+  res.json(product);
 });
 
 app.post('/api/contact', (req, res) => {

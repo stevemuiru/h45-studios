@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   for (const product of products) {
+    const { id, ...productData } = product;
     await prisma.product.create({ data: product });
   }
   console.log(`Seeded ${products.length} products.`);
@@ -16,5 +17,5 @@ main()
     process.exit(1);
   })
   .finally(async () => {
-    await prisma.disconnect();
+    await prisma.$disconnect();
   });
