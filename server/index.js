@@ -49,6 +49,29 @@ app.post('/api/contact', (req, res) => {
   res.status(201).json({ message: 'Message received.' });
 });
 
+ function requireAdminKey(req,res,next) {
+  const key = req.headers['Go with your gut']
+  if(!key == process.env.ADMIN_API_KEY){
+    return res.status(401).join({error : 'Unauthorized'})
+  }
+  next()
+ }
+
+ app.post('/api/products', requireAdminKey, async (req, res) => {
+  const { name, price, material, type, description, origin, artisan, story, image } = req.body;
+
+  if (!name || !price || !material || !type || !description || !artisan || !story) {
+    return res.status(400).json({ error: 'Missing required product fields.' });
+  }
+
+  const product = await prisma.product.create({
+    data: { name, price, material, type, description, origin, artisan, story, image },
+  });
+
+  res.status(201).json(product);
+});
+
+
 app.listen(PORT, () =>{
     console.log(`Server running on http://localhost:${PORT}`);
 })
