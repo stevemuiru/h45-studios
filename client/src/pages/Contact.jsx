@@ -4,13 +4,15 @@ function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [serverError, setServerError] = useState(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const newErrors = {};
     if (!form.name.trim()) newErrors.name = 'Enter your name.';
@@ -18,9 +20,29 @@ function Contact() {
     if (!form.message.trim()) newErrors.message = 'Write a short message.';
 
     setErrors(newErrors);
-    if (Object.keys(newErrors).length === 0) {
+    if (Object.keys(newErrors).length > 0) return;
+
+    setSubmitting(true);
+    setServerError(null);
+
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+
       setSubmitted(true);
       setForm({ name: '', email: '', message: '' });
+    } catch (err) {
+      setServerError(err.message);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -79,11 +101,16 @@ function Contact() {
             {errors.message && <p className="text-rust text-xs mt-1">{errors.message}</p>}
           </div>
 
+          {serverError && (
+            <p className="text-rust text-sm mb-4">{serverError}</p>
+          )}
+
           <button
             type="submit"
-            className="w-full bg-brass text-ink text-xs tracking-wide px-6 py-3 hover:bg-brass-light transition-colors"
+            disabled={submitting}
+            className="w-full bg-brass text-ink text-xs tracking-wide px-6 py-3 hover:bg-brass-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Send message
+            {submitting ? 'Sending...' : 'Send message'}
           </button>
 
           {submitted && (

@@ -12,12 +12,24 @@ const PORT = process.env.PORT || 5000;
 app.use(cors())
 app.use(express.json())
 
+function requireAdminKey(req, res, next) {
+  const key = req.headers['x-api-key'];
+  if (key !== process.env.ADMIN_API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+}
+
+
 app.get('/', (req, res) => {
     res.send('H45 studios API is running')
 })
 
 app.get('/api/products', async (req, res) => {
-  const products = await prisma.product.findMany();
+  const { featured } = req.query;
+  const products = await prisma.product.findMany({
+    where: featured === 'true' ? { featured: true } : {},
+  });
   res.json(products);
 });
 
@@ -49,14 +61,7 @@ app.post('/api/contact', (req, res) => {
   res.status(201).json({ message: 'Message received.' });
 });
 
- function requireAdminKey(req,res,next) {
-  const key = req.headers['Go with your gut']
-  if(!key == process.env.ADMIN_API_KEY){
-    return res.status(401).join({error : 'Unauthorized'})
-  }
-  next()
- }
-
+ 
  app.post('/api/products', requireAdminKey, async (req, res) => {
   const { name, price, material, type, description, origin, artisan, story, image } = req.body;
 

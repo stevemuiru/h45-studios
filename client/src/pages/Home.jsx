@@ -8,7 +8,7 @@ function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/products`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/products?featured=true`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch products');
         return res.json();

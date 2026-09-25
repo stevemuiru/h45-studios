@@ -23,5 +23,6 @@ model Product {
   artisan     String
   story       String
   image       String?
+  featured    Boolean  @default(false)
   createdAt   DateTime @default(now())
 }
