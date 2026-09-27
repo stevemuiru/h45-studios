@@ -12,12 +12,7 @@ function Footer() {
           </p>
         </div>
 
-        <nav className="flex flex-col gap-2">
-          <Link to="/" className="text-sm text-bone/70 hover:text-bone transition-colors">Home</Link>
-          <Link to="/atelier" className="text-sm text-bone/70 hover:text-bone transition-colors">Atelier</Link>
-          <Link to="/contact" className="text-sm text-bone/70 hover:text-bone transition-colors">Contact</Link>
-        </nav>
-
+  
         <div className="flex gap-5 items-start">
           <a href="#" aria-label="Instagram" className="text-bone/70 hover:text-brass transition-colors">
             <FaInstagram size={20} />

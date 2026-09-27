@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import HeroCarousel from '../components/HeroCarousel';
 import ProductCard from '../components/ProductCard';
 
 function Home() {
@@ -27,24 +28,25 @@ function Home() {
     <div className="bg-bone">
 
       
-      <section className="bg-ink text-bone px-6 md:px-12 py-24 md:py-32">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="font-serif text-4xl md:text-5xl max-w-2xl leading-tight">
-            Nothing discarded, everything reborn.
-          </h1>
-          <p className="text-bone/70 text-sm md:text-base max-w-lg mt-6">
-            H45 Studios — Branding &amp; Graphic Design / Arts &amp; Entertainment.
-            H45 offers a distinctive approach to luxury fashion, centered on the art
-            of upcycling. Our signature pieces include high-end bags, cutting-edge
-            streetwear, and our charming range of crochet items.
-          </p>
-          <div className="flex flex-wrap gap-4 mt-8">
-            <Link to="/atelier" className="bg-brass text-ink text-xs tracking-wide px-6 py-3 hover:bg-brass-light transition-colors">
-              Shop The Atelier
-            </Link>
-          </div>
-        </div>
-      </section>
+      <section className="relative text-bone px-6 md:px-12 py-24 md:py-32 overflow-hidden">
+  <HeroCarousel />
+  <div className="relative max-w-6xl mx-auto">
+    <h1 className="font-serif text-4xl md:text-5xl max-w-2xl leading-tight">
+      Nothing discarded, everything reborn.
+    </h1>
+    <p className="text-bone/70 text-sm md:text-base max-w-lg mt-6">
+      H45 Studios — Branding &amp; Graphic Design / Arts &amp; Entertainment.
+      H45 offers a distinctive approach to luxury fashion, centered on the art
+      of upcycling. Our signature pieces include high-end bags, cutting-edge
+      streetwear, and our charming range of crochet items.
+    </p>
+    <div className="flex flex-wrap gap-4 mt-8">
+      <Link to="/atelier" className="bg-brass text-ink text-xs tracking-wide px-6 py-3 hover:bg-brass-light transition-colors">
+        Shop The Atelier
+      </Link>
+    </div>
+  </div>
+</section>
 
       
       <section className="px-6 md:px-12 py-20">
