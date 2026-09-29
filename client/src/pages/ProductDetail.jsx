@@ -46,7 +46,7 @@ function ProductDetail() {
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <img src={product.image} alt={product.name} className="w-full aspect-[4/5] object-cover" />
+          <img src={`${import.meta.env.VITE_API_URL}${product.image}`} alt={product.name} className='w-full aspect-[4/5] object-cover' />
 
           <div>
             <h1 className="font-serif text-3xl text-ink">{product.name}</h1>

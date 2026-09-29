@@ -6,7 +6,7 @@ function ProductCard({ product }) {
     <Link to={`/atelier/${product.id}`} className="group block bg-white border border-border-c">
       <div className="relative overflow-hidden aspect-[4/5] bg-border-c/40">
         {product.image ? (
-          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+          <img src={`${import.meta.env.VITE_API_URL}${product.image}`} alt={product.name} className='w-full aspect-[4/5] object-cover'/>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-center px-4">
             <p className="text-ink/40 text-xs uppercase tracking-widest">

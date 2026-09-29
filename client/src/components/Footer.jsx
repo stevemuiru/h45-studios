@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaFacebookF, FaXTwitter, FaYoutube } from 'react-icons/fa6';
+import { FaInstagram, FaXTwitter,} from 'react-icons/fa6';
 
 function Footer() {
   return (
@@ -17,15 +17,11 @@ function Footer() {
           <a href="#" aria-label="Instagram" className="text-bone/70 hover:text-brass transition-colors">
             <FaInstagram size={20} />
           </a>
-          <a href="#" aria-label="Facebook" className="text-bone/70 hover:text-brass transition-colors">
-            <FaFacebookF size={20} />
-          </a>
+          
           <a href="#" aria-label="X (Twitter)" className="text-bone/70 hover:text-brass transition-colors">
             <FaXTwitter size={20} />
           </a>
-          <a href="#" aria-label="YouTube" className="text-bone/70 hover:text-brass transition-colors">
-            <FaYoutube size={20} />
-          </a>
+
         </div>
       </div>
 
