@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaXTwitter,} from 'react-icons/fa6';
+import { FaInstagram, FaXTwitter, FaTiktok} from 'react-icons/fa6';
 
 function Footer() {
   return (
@@ -14,14 +14,17 @@ function Footer() {
 
   
         <div className="flex gap-5 items-start">
-          <a href="#" aria-label="Instagram" className="text-bone/70 hover:text-brass transition-colors">
+          <a href="https://instagram.com/h45studios" aria-label="Instagram" className="text-bone/70 hover:text-brass transition-colors" target="_blank" rel="noopener noreferrer">
             <FaInstagram size={20} />
           </a>
           
-          <a href="#" aria-label="X (Twitter)" className="text-bone/70 hover:text-brass transition-colors">
+          <a href="https://x.com/h45studios" aria-label="X (Twitter)" className="text-bone/70 hover:text-brass transition-colors" target="_blank" rel="noopener noreferrer">
             <FaXTwitter size={20} />
           </a>
 
+          <a href="https://tiktok.com/@h45studios" aria-label="TikTok" target="_blank" rel="noopener noreferrer" className="text-bone/70 hover:text-brass transition-colors">
+  <FaTiktok size={20} />
+</a>
         </div>
       </div>
 

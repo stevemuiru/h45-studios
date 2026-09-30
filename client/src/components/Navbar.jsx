@@ -16,9 +16,6 @@ function Navbar() {
       </nav>
 
       <div className="flex items-center gap-4">
-        <button className="border border-brass text-xs tracking-wide px-4 py-2 hover:bg-brass/10 transition-colors">
-          Cart (0)
-        </button>
         <button
           className="md:hidden text-2xl"
           onClick={() => setMenuOpen(!menuOpen)}
